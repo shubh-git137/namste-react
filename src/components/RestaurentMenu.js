@@ -1,37 +1,39 @@
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
+import { useParams } from "react-router-dom";
+import useRestaurentMenu from "../utils/useRestaurentMenu";
 
 const RestaurentMenu = () => {
+  const { resId } = useParams();
+  const resInfo = useRestaurentMenu(resId);
 
-  const [resInfo, setResInfo] = useState(null);
+  if (resInfo === null) return <Shimmer />;
 
-  useEffect( () => {
-    fetchMenu();
-  }, []);
+  const { name, cuisines, costForTwoMessage } =
+    resInfo?.cards[0]?.card?.card?.info;
 
-  const fetchMenu = async () => {
-    //fetch the data
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.6284537&lng=77.3769437&restaurantId=137369&catalog_qa=undefined&submitAction=ENTER"
-    );
+  const { itemCards } =
+    resInfo?.cards[2].groupedCard.cardGroupMap.REGULAR.cards[2].card.card;
+  console.log(itemCards);
 
-    //convert data to json
-    const json = await data.json();
-
-    console.log(json);
-    setResInfo(json.data);
-  };
-  // const {name='',cuisines=''} = resInfo?.cards[0]?.card?.card?.info;
   return (
     <div className="menu">
-      <h1>{resInfo?.cards[0]?.card?.card?.info?.name}</h1>
-      {/* 
-          const arr = ["Hello", "Rohit", "Tiwari"];
-          console.log(arr.join());
-          // output:  Hello, Rohit, Tiwari
-      */}
-
-      <p>{resInfo?.cards[0]?.card?.card?.info?.cuisines.join(", ")}- {resInfo?.cards[0]?.card?.card?.info?.costForTwoMessage}</p>
-      
+      <h1>{name}</h1>
+      <p>
+        {cuisines.join(", ")} - {costForTwoMessage}
+      </p>
+      <h2>Menu</h2>
+      <ul className="menu-list">
+        {itemCards.map((item) => (
+          <li key={item.card.info.id} className="menu-item">
+            <span className="item-name">{item.card.info.name}</span>{" "}
+            <span className="item-price">
+              Rs.{" "}
+              {item.card.info.price / 100 || item.card.info.defaultPrice / 100}
+            </span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
