@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 
 const StarRating = (props) => {
-  console.log(props.rating);
   const [rating, setRating] = useState(0);
 
   const handleStarClick = (newRating) => {

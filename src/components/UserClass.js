@@ -11,24 +11,18 @@ class UserClass extends React.Component {
           "https://media.istockphoto.com/id/1341046662/vector/picture-profile-icon-human-or-people-sign-and-symbol-for-template-design.jpg?s=612x612&w=0&k=20&c=A7z3OK0fElK3tFntKObma-3a7PyO8_2xxW0jtmjzT78=",
       },
     };
-    console.log(" Child constructor called!");
   }
   async componentDidMount() {
     this.timer = setInterval(() => {
-      console.log("Namste React OP");
     }, 1000);
-    // console.log("Component Did Mount Called");
   }
 
   componentDidUpdate() {
-    // console.log("Component Did update called");
   }
   componentWillUnmount() {
     clearInterval(this.timer);
-    // console.log("Component Will Unmount");
   }
   render() {
-    // console.log(" child Rendered called!");
     const { name, location, avatar_url } = this.state.userInfo;
     return (
       <div className="user-class">

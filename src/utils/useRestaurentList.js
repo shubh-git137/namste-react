@@ -11,11 +11,13 @@ const useRestaurentList = () => {
   const fetchData = async () => {
     const data = await fetch(LIST_API);
     const json = await data.json();
-    const restaurents = json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    const restaurents =
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
     setListOfRestaurent(restaurents);
     setFilteredRestaurant(restaurents);
   };
-  return {listOfRestaurent,filteredRestaurant,setFilteredRestaurant};
+  return { listOfRestaurent, filteredRestaurant, setFilteredRestaurant };
 };
 
 export default useRestaurentList;

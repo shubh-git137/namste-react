@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurentCard";
+import RestaurantCard, { withPrmotedLable } from "./RestaurentCard";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { useState, useEffect } from "react";
@@ -6,9 +6,14 @@ import useRestaurentList from "../utils/useRestaurentList";
 import { Link } from "react-router-dom";
 
 const Body = () => {
-  const {listOfRestaurent,filteredRestaurant,setFilteredRestaurant} = useRestaurentList()
+  const { listOfRestaurent, filteredRestaurant, setFilteredRestaurant } =
+    useRestaurentList();
   const [searchText, setSearchText] = useState("");
+
+  const RestaurentCardPromoted = withPrmotedLable(RestaurantCard);
+
   const onlineStatus = useOnlineStatus();
+
   if (onlineStatus == false)
     return (
       <h1>
@@ -61,6 +66,7 @@ const Body = () => {
             to={"/restaurents/" + restaurant.info.id}
             className="link-wrapper"
           >
+            {/* {restaurant.info.} */}
             <RestaurantCard resData={restaurant} />
           </Link>
         ))}
