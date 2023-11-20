@@ -4,7 +4,7 @@ const RestaurantCard = (props) => {
   const { cloudinaryImageId, name, cuisines, costForTwo, avgRating } =
     resData?.info;
   return (
-    <div className="justify-between flex-wrap w-[250px]  border-2 rounded-xl transform transition-transform hover:scale-95">
+    <div className="justify-between flex-wrap w-[250px] border-2 rounded-xl transform transition-transform hover:scale-95">
       <img
         className="w-[100%] h-40 object-cover rounded-xl"
         src={CDN_URL + cloudinaryImageId}
@@ -22,11 +22,11 @@ const RestaurantCard = (props) => {
 };
 
 export const withPrmotedLable = (RestaurantCard) => {
-  return () => {
+  return (props) => {
     return (
-      <div>
-        <label>Promoted</label>
-        <RestaurantCard />
+      <div >
+        {/* <label className=" bg-black text-white ">Promoted</label> */}
+        <RestaurantCard {...props}/>
       </div>
     );
   };
