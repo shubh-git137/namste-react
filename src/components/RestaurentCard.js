@@ -12,7 +12,10 @@ const RestaurantCard = (props) => {
       />
       <h3 className=" mt-1 text-lg font-bold">{name}</h3>
       <p>
-        <b className=" bg-orange-300">★</b> {avgRating}
+        <b className=" bg-green-700 text-white rounded-full text-center w-10 h-10">
+          ★
+        </b>{" "}
+        {avgRating}
       </p>
       <h4>{cuisines.slice(0, 3).join(",")}</h4>
       {/* <h4>{costForTwo}</h4> */}
@@ -24,9 +27,9 @@ const RestaurantCard = (props) => {
 export const withPrmotedLable = (RestaurantCard) => {
   return (props) => {
     return (
-      <div >
+      <div>
         {/* <label className=" bg-black text-white ">Promoted</label> */}
-        <RestaurantCard {...props}/>
+        <RestaurantCard {...props} />
       </div>
     );
   };

@@ -13,7 +13,6 @@ const Header = () => {
 
   // Subscribing to the cart using selector
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
   const cartItemCount = cartItems.length;
 
   return (

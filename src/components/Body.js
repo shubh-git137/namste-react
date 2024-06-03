@@ -5,6 +5,7 @@ import { useState, useEffect, useContext } from "react";
 import useRestaurentList from "../utils/useRestaurentList";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
+import FoodSelection from "./FoodSelection";
 
 const Body = () => {
   const { listOfRestaurent, filteredRestaurant, setFilteredRestaurant } =
@@ -18,13 +19,13 @@ const Body = () => {
         Looks Like you are offline!! Please check your internet connection;
       </h1>
     );
-  const { loggedInUser,setUserName } = useContext(UserContext);
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
   return listOfRestaurent?.length == 0 ? (
     <Shimmer />
   ) : (
     <div className="body mb-2">
-      <div className="filter">
+      {/* <div className="filter">
         <div className="search">
           <input
             type="text"
@@ -63,7 +64,9 @@ const Body = () => {
             onChange={(e) => setUserName(e.target.value)}
           />
         </div>
-      </div>
+      </div> */}
+      <FoodSelection />
+      <hr className="mb-2"/>
       <div className="flex gap-8 flex-wrap ml-10">
         {filteredRestaurant?.map((restaurant) => (
           <Link

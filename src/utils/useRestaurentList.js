@@ -12,7 +12,7 @@ const useRestaurentList = () => {
     const data = await fetch(LIST_API);
     const json = await data.json();
     const restaurents =
-      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     setListOfRestaurent(restaurents);
     setFilteredRestaurant(restaurents);
