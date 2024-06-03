@@ -1,0 +1,45 @@
+.slick-next:before {
+    opacity: 0.75;
+    color: #000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: slick;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.slick-prev:before {
+    opacity: 0.75;
+    color: #000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: slick;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.food-carousel {
+    text-align: center;
+  }
+  
+  .food-item {
+    padding: 10px;
+  }
+  
+  .food-image {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  .slick-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slick-prev:before,
+  .slick-next:before {
+    color: black;
+  }
+  

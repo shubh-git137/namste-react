@@ -1,31 +1,31 @@
 import RestaurantCard, { withPrmotedLable } from "./RestaurentCard";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import useRestaurentList from "../utils/useRestaurentList";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
+import FoodSelection from "./FoodSelection";
 
 const Body = () => {
   const { listOfRestaurent, filteredRestaurant, setFilteredRestaurant } =
     useRestaurentList();
   const [searchText, setSearchText] = useState("");
-
   const RestaurentCardPromoted = withPrmotedLable(RestaurantCard);
-
   const onlineStatus = useOnlineStatus();
-
   if (onlineStatus == false)
     return (
       <h1>
         Looks Like you are offline!! Please check your internet connection;
       </h1>
     );
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
   return listOfRestaurent?.length == 0 ? (
     <Shimmer />
   ) : (
     <div className="body mb-2">
-      <div className="filter">
+      {/* <div className="filter">
         <div className="search">
           <input
             type="text"
@@ -57,8 +57,16 @@ const Body = () => {
           >
             Top rated restaurant
           </button>
+          <label>UserName: </label>
+          <input
+            className="border border-black p-1"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
-      </div>
+      </div> */}
+      <FoodSelection />
+      <hr className="mb-2"/>
       <div className="flex gap-8 flex-wrap ml-10">
         {filteredRestaurant?.map((restaurant) => (
           <Link
@@ -66,8 +74,11 @@ const Body = () => {
             to={"/restaurents/" + restaurant.info.id}
             className="link-wrapper"
           >
-            {/* {restaurant.info.} */}
-            <RestaurantCard resData={restaurant} />
+            {restaurant.info.avgRating > 4.0 ? (
+              <RestaurentCardPromoted resData={restaurant} />
+            ) : (
+              <RestaurantCard resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>

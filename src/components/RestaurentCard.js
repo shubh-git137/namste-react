@@ -4,7 +4,7 @@ const RestaurantCard = (props) => {
   const { cloudinaryImageId, name, cuisines, costForTwo, avgRating } =
     resData?.info;
   return (
-    <div className="justify-between flex-wrap w-[250px]  border-2 rounded-xl transform transition-transform hover:scale-95">
+    <div className="justify-between flex-wrap w-[250px] border-2 rounded-xl transform transition-transform hover:scale-95">
       <img
         className="w-[100%] h-40 object-cover rounded-xl"
         src={CDN_URL + cloudinaryImageId}
@@ -12,7 +12,10 @@ const RestaurantCard = (props) => {
       />
       <h3 className=" mt-1 text-lg font-bold">{name}</h3>
       <p>
-        <b className=" bg-orange-300">★</b> {avgRating}
+        <b className=" bg-green-700 text-white rounded-full text-center w-10 h-10">
+          ★
+        </b>{" "}
+        {avgRating}
       </p>
       <h4>{cuisines.slice(0, 3).join(",")}</h4>
       {/* <h4>{costForTwo}</h4> */}
@@ -22,11 +25,11 @@ const RestaurantCard = (props) => {
 };
 
 export const withPrmotedLable = (RestaurantCard) => {
-  return () => {
+  return (props) => {
     return (
       <div>
-        <label>Promoted</label>
-        <RestaurantCard />
+        {/* <label className=" bg-black text-white ">Promoted</label> */}
+        <RestaurantCard {...props} />
       </div>
     );
   };
